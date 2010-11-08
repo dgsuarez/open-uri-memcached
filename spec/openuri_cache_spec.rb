@@ -133,7 +133,12 @@ logger = Logger.new(StringIO.new)
     before :all do
       Rails.cache = ActiveSupport::Cache::MemCacheStore.new('127.0.0.1:11211')
     end
+  },
+  'local-cache' => lambda {
+    require 'local_cache'
+    require 'openuri/local-cache'
   }
+
 }.each do |key, before|
   begin
     describe key do
